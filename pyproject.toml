@@ -17,6 +17,7 @@ appdirs = "^1.4.4"
 python = "^3.10"
 aiosqlite = "^0.17.0"
 pytimeparse = "^1.1.8"
+tortoise-orm = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 black = "22.3.0"
