@@ -62,6 +62,9 @@ class PCParadiseBot(commands.Bot):
         owner_ids = self.config["ownerid"].split(",")
         self.owners = [int(owner_id.strip()) for owner_id in owner_ids]
 
+        # Load EmbedColor from config
+        self.embed_color = int(self.config["embedcolor"], 16)
+
         # Call constructor of superclass Bot
         super().__init__(
             # Bot will respond to mention+cmd name and prefix+cmd name

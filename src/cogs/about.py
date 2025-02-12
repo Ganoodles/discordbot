@@ -21,6 +21,7 @@ class About(commands.Cog):
 
         embed = discord.Embed(
             description=f"[How To Contribute]({contributing_md_url})",
+            color=self.bot.embed_color,
         )
 
         await interaction.response.send_message(embed=embed)

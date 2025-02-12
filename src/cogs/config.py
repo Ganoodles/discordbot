@@ -110,6 +110,7 @@ class Config(commands.Cog):
                     description=f"Channel: {channel.mention}\n"
                     f"Verification role: {role.mention}\n"
                     f"Verification word: `{word}`",
+                    color=self.bot.embed_color,
                 )
 
                 embed.add_field(
