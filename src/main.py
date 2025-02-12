@@ -35,7 +35,6 @@ EXTENSIONS = [
 # Define API Intents that we want to subscribe to
 intents = discord.Intents.all()
 
-
 class PCParadiseBot(commands.Bot):
     """
     Sub-class that inherits from commands.Bot to add additional attributes
@@ -153,6 +152,8 @@ class PCParadiseBot(commands.Bot):
                 print(f"SUCCESS - {extension}")
             except commands.ExtensionNotFound:
                 print(f"FAILED - {extension}", file=sys.stderr)
+
+        self.remove_command("help")
 
     def run(self):  # pylint: disable=W0221
         """
