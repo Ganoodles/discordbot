@@ -28,12 +28,18 @@ class WelcomeModule(commands.Cog):
             await self.handle_welcome_message(msg)
 
         except discord.Forbidden:
-            await msg.channel.send("An error occurred. (Bot is Missing Permissions)")
+            embed = discord.Embed(
+                description="An error occurred. (Bot is Missing Permissions)",
+                color=self.bot.embed_color
+            )
+            await msg.channel.send(embed=embed)
 
         except discord.HTTPException:
-            await msg.channel.send(
-                "An error occurred while adding your role. Please try again later."
+            embed = discord.Embed(
+                description="An error occurred while adding your role. Please try again later.",
+                color=self.bot.embed_color
             )
+            await msg.channel.send(embed=embed)
 
     async def handle_welcome_message(self, msg):
         """
@@ -83,9 +89,10 @@ class WelcomeModule(commands.Cog):
                     "re-read the rules in order to learn how to gain access to "
                     "all channels on this server. Thank you!"
                 ),
+                color=self.bot.embed_color
             )
 
-            failed_verify = await msg.channel.send(embed=embed)
+            failed_verify = await msg.reply(embed=embed)
             await msg.delete()
 
             await asyncio.sleep(10)

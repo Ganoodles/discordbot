@@ -45,23 +45,27 @@ class Config(commands.Cog):
             result = await cur.fetchone()
 
             if not result:
-                await interaction.response.send_message(
-                    (
-                        "No welcome channel has been set up yet. "
-                        "No action was taken. To set up a welcome channel, "
-                        "run the command !enable_welcome_channel."
-                    )
+                embed = discord.Embed(
+                    title="No Welcome Channel Set Up",
+                    description=(
+                        "No welcome channel has been set up yet. No action was taken.\n"
+                        "To set up a welcome channel, run `!enable_welcome_channel`."
+                    ),
+                    color=self.bot.embed_color,
                 )
+
+                await interaction.response.send_message(embed=embed)
                 return
 
             await cur.execute(delete_server_settings, (server_id,))
             await database.commit()
-            await interaction.response.send_message(
-                (
-                    "Success! To re-enable the "
-                    "welcome channel run !enable_welcome_channel"
-                )
+            embed = discord.Embed(
+                title="Success!",
+                description="To re-enable the welcome channel, run `!enable_welcome_channel`.",
+                color=self.bot.embed_color,
             )
+
+            await interaction.response.send_message(embed=embed)
 
     @app_commands.command(
         name="enable_welcome_channel",
